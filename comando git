@@ -1,0 +1,9 @@
+Comandos:
+
+Para setear el proxy del laburo
+
+git config --global http.proxy http://10.10.254.218:3128
+
+Para laburar en casa:
+
+git config --global --unset http.proxy
