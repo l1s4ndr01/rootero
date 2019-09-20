@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.UsuarioGeneral" optimistic-lock="version" table="usuariogeneral">
+    <id name="username" type="string">
+      <column length="32" name="username"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="password" type="string">
+      <column length="32" name="password" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="32" name="apellido" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="32" name="nombre" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="32" name="email" not-null="true"/>
+    </property>
+    <property name="activo" type="java.lang.Byte">
+      <column name="activo"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="copialicencias" table="copialicencia">
+      <key>
+        <column length="32" name="usernamecopia" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.CopiaLicencia"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="modificaciontitulars" table="modificaciontitular">
+      <key>
+        <column length="32" name="usermodificacion" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ModificacionTitular"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="titulars" table="titular">
+      <key>
+        <column length="32" name="usernamecreacion" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.Titular"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comprobantepagos" table="comprobantepago">
+      <key>
+        <column length="32" name="username" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ComprobantePago"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="licencias" table="licencia">
+      <key>
+        <column length="32" name="usernameotorgamiento" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.Licencia"/>
+    </set>
+    <one-to-one class="Entidades.Administrador" name="administrador"/>
+    <one-to-one class="Entidades.Usuario" name="usuario"/>
+  </class>
+</hibernate-mapping>

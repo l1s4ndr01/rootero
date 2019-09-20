@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.ConceptoComprobante" optimistic-lock="version" table="conceptocomprobante">
+    <id name="idconcepto" type="int">
+      <column name="idconcepto"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Entidades.ComprobantePago" fetch="select" name="comprobantepago">
+      <column name="nrocomprobante" not-null="true"/>
+    </many-to-one>
+    <property name="nombreconcepto" type="string">
+      <column length="100" name="nombreconcepto" not-null="true"/>
+    </property>
+    <property name="monto" type="double">
+      <column name="monto" not-null="true" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

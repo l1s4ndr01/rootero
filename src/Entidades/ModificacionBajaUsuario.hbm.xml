@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.ModificacionBajaUsuario" optimistic-lock="version" table="modificacionbajausuario">
+    <composite-id class="Entidades.ModificacionBajaUsuarioId" name="id">
+      <key-property name="usermodificado" type="string">
+        <column length="32" name="usermodificado"/>
+      </key-property>
+      <key-property name="adminmodificacion" type="string">
+        <column length="32" name="adminmodificacion"/>
+      </key-property>
+      <key-property name="fechahoramodificacion" type="timestamp">
+        <column length="26" name="fechahoramodificacion"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="Entidades.Administrador" fetch="select" insert="false" name="administrador" update="false">
+      <column length="32" name="adminmodificacion" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Entidades.Usuario" fetch="select" insert="false" name="usuario" update="false">
+      <column length="32" name="usermodificado" not-null="true"/>
+    </many-to-one>
+    <property name="motivo" type="string">
+      <column length="100" name="motivo" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

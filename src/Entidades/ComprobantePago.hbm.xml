@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.ComprobantePago" optimistic-lock="version" table="comprobantepago">
+    <id name="nrocomprobante" type="int">
+      <column name="nrocomprobante"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Entidades.Licencia" fetch="select" name="licencia">
+      <column name="idlicencia" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Entidades.UsuarioGeneral" fetch="select" name="usuariogeneral">
+      <column length="32" name="username" not-null="true"/>
+    </many-to-one>
+    <property name="fechahoracomprobante" type="timestamp">
+      <column length="26" name="fechahoracomprobante" not-null="true"/>
+    </property>
+    <property name="montototal" type="double">
+      <column name="montototal" not-null="true" precision="22" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="conceptocomprobantes" table="conceptocomprobante">
+      <key>
+        <column name="nrocomprobante" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ConceptoComprobante"/>
+    </set>
+  </class>
+</hibernate-mapping>

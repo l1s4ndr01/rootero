@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.Administrador" optimistic-lock="version" table="administrador">
+    <id name="usuariogeneralUsername" type="string">
+      <column length="32" name="usuariogeneral_username"/>
+      <generator class="foreign">
+        <param name="property">usuariogeneral</param>
+      </generator>
+    </id>
+    <one-to-one class="Entidades.UsuarioGeneral" constrained="true" name="usuariogeneral"/>
+    <set fetch="select" inverse="true" lazy="true" name="modificacionbajausuarios" table="modificacionbajausuario">
+      <key>
+        <column length="32" name="adminmodificacion" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ModificacionBajaUsuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="usuarios" table="usuario">
+      <key>
+        <column length="32" name="admincreacion" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.Usuario"/>
+    </set>
+  </class>
+</hibernate-mapping>

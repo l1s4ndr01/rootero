@@ -1,0 +1,1 @@
+Paquete de clases que se refieren a entidades o relaciones mapeadas de la DB.

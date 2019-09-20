@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.CopiaLicencia" optimistic-lock="version" table="copialicencia">
+    <composite-id class="Entidades.CopiaLicenciaId" name="id">
+      <key-property name="idlicencia" type="int">
+        <column name="idlicencia"/>
+      </key-property>
+      <key-property name="nrocopia" type="int">
+        <column name="nrocopia"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="Entidades.Licencia" fetch="select" insert="false" name="licencia" update="false">
+      <column name="idlicencia" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Entidades.UsuarioGeneral" fetch="select" name="usuariogeneral">
+      <column length="32" name="usernamecopia" not-null="true"/>
+    </many-to-one>
+    <property name="motivoSolicitud" type="string">
+      <column length="100" name="motivoSolicitud" not-null="true"/>
+    </property>
+    <property name="fechacopia" type="date">
+      <column length="10" name="fechacopia" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.Licencia" optimistic-lock="version" table="licencia">
+    <id name="idlicencia" type="int">
+      <column name="idlicencia"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Entidades.Titular" fetch="select" name="titular">
+      <column name="idtitular" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Entidades.UsuarioGeneral" fetch="select" name="usuariogeneral">
+      <column length="32" name="usernameotorgamiento" not-null="true"/>
+    </many-to-one>
+    <property name="nrolicencia" type="int">
+      <column name="nrolicencia" not-null="true"/>
+    </property>
+    <property name="fechaotorgamiento" type="date">
+      <column length="10" name="fechaotorgamiento" not-null="true"/>
+    </property>
+    <property name="fechavencimiento" type="date">
+      <column length="10" name="fechavencimiento" not-null="true"/>
+    </property>
+    <property name="categoria" type="string">
+      <column length="7" name="categoria" not-null="true"/>
+    </property>
+    <property name="vigente" type="java.lang.Byte">
+      <column name="vigente"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="copialicencias" table="copialicencia">
+      <key>
+        <column name="idlicencia" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.CopiaLicencia"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comprobantepagos" table="comprobantepago">
+      <key>
+        <column name="idlicencia" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ComprobantePago"/>
+    </set>
+  </class>
+</hibernate-mapping>

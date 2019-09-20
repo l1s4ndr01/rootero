@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/10/2018 18:54:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="metodosagiles2018" name="Entidades.Titular" optimistic-lock="version" table="titular">
+    <id name="idtitular" type="int">
+      <column name="idtitular"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Entidades.UsuarioGeneral" fetch="select" name="usuariogeneral">
+      <column length="32" name="usernamecreacion" not-null="true"/>
+    </many-to-one>
+    <property name="dni" type="int">
+      <column name="dni" not-null="true"/>
+    </property>
+    <property name="tipodni" type="string">
+      <column length="3" name="tipodni" not-null="true"/>
+    </property>
+    <property name="cuil" type="string">
+      <column length="11" name="cuil" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="32" name="apellido" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="32" name="nombre" not-null="true"/>
+    </property>
+    <property name="fechanacimiento" type="date">
+      <column length="10" name="fechanacimiento" not-null="true"/>
+    </property>
+    <property name="sexo" type="string">
+      <column length="1" name="sexo" not-null="true"/>
+    </property>
+    <property name="domicilio" type="string">
+      <column length="100" name="domicilio" not-null="true"/>
+    </property>
+    <property name="nacionalidad" type="string">
+      <column length="32" name="nacionalidad" not-null="true"/>
+    </property>
+    <property name="grupofactorsanguineo" type="string">
+      <column length="4" name="grupofactorsanguineo" not-null="true"/>
+    </property>
+    <property name="donante" type="java.lang.Byte">
+      <column name="donante"/>
+    </property>
+    <property name="observaciones" type="string">
+      <column length="300" name="observaciones" not-null="true"/>
+    </property>
+    <property name="fechacreacion" type="date">
+      <column length="10" name="fechacreacion" not-null="true"/>
+    </property>
+    <property name="activo" type="java.lang.Byte">
+      <column name="activo"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="modificaciontitulars" table="modificaciontitular">
+      <key>
+        <column name="idtitularmodificado" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.ModificacionTitular"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="licencias" table="licencia">
+      <key>
+        <column name="idtitular" not-null="true"/>
+      </key>
+      <one-to-many class="Entidades.Licencia"/>
+    </set>
+  </class>
+</hibernate-mapping>
